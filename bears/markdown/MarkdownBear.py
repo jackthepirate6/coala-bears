@@ -9,7 +9,10 @@ from coalib.bearlib import deprecate_settings
 
 @linter(executable='remark',
         use_stdout=True,
-        use_stderr=True)
+        use_stderr=True,
+        prerequisite_check_command=('remark-cli',),
+        prerequisite_check_fail_message='remark-cli is not installed. Please'
+        'make sure you install ``remark-cli``.')
 class MarkdownBear:
     """
     Check and correct Markdown style violations automatically.
