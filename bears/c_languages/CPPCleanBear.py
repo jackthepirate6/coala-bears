@@ -32,8 +32,9 @@ class CPPCleanBear:
         for include_path in include_paths:
             args.append('--include-path')
             args.append(include_path)
+        for include_system_path in include_system_paths:        
             args.append('--include-path-system')
-            args.append(include_system_paths)
+            args.append(include_system_path)
 
         return args
 
