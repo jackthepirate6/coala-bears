@@ -1,7 +1,7 @@
 import shutil
 
 from coalib.bearlib.languages.documentation.DocumentationComment import (
-    DocumentationComment)
+    DocumentationComment, MalformedComment)
 from coalib.bearlib.languages.documentation.DocstyleDefinition import (
     DocstyleDefinition)
 from coalib.bearlib.languages.documentation.DocBaseClass import (
