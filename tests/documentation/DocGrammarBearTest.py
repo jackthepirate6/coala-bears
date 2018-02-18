@@ -65,6 +65,33 @@ def test(test_data, expected_data, optional_setting=None):
         self.assertEqual(expected_data, diff.modified)
 
     return test_function
+  
+  
+def test_MalformedComment(test_data, message, optional_setting=None):
+    def test_MalformedComment_function(self):
+        arguments = {'language': 'python', 'docstyle': 'default'}
+        if optional_setting:
+            arguments.update(optional_setting)
+        section = Section('test-section')
+        for key, value in arguments.items():
+            section[key] = value
+        with execute_bear(
+                DocumentationStyleBear(section, Queue()),
+                'dummy_file',
+                test_data,
+                use_spaces=True,
+                **arguments) as results:
+            self.assertEqual(results[0].message, message)
+
+        with execute_bear(
+                DocumentationStyleBear(section, Queue()),
+                'dummy_file',
+                test_data,
+                use_spaces=False,
+                **arguments) as results:
+            self.assertEqual(results[0].message, message)
+
+return test_MalformedComment_function  
 
 
 @generate_skip_decorator(DocGrammarBear)
@@ -169,3 +196,20 @@ class DocGrammarBearTest(unittest.TestCase):
         '    :return: Returns nothing. First letter small.\n',
         '    """\n',
         '    return None'])
+
+    test_malformed_comment_python = test_MalformedComment(
+        ['"""\n',
+         'This will yield MalformedComment'],
+        dedent("""\
+             Please check the docstring for faulty markers. A starting
+             marker has been found, but no instance of DocComment is
+             returned."""))
+
+    test_malformed_comment_java = test_MalformedComment(
+        ['\n',
+         '/** This will yield MalformedComment\n'],
+        dedent("""\
+             Please check the docstring for faulty markers. A starting
+             marker has been found, but no instance of DocComment is
+             returned."""),
+             {'language': 'java'})
