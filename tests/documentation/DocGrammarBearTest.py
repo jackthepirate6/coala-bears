@@ -91,7 +91,7 @@ def test_MalformedComment(test_data, message, optional_setting=None):
                 **arguments) as results:
             self.assertEqual(results[0].message, message)
 
-return test_MalformedComment_function  
+    return test_MalformedComment_function  
 
 
 @generate_skip_decorator(DocGrammarBear)
