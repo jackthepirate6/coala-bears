@@ -26,10 +26,14 @@ class CPPCleanBear:
     def create_arguments(filename,
                          file,
                          config_file,
-                         include_paths: typed_list(str)=()):
+                         include_paths: typed_list(str)=()
+                         include_system_paths: typed_list(str)=()):
         args = [filename]
         for include_path in include_paths:
             args.append('--include-path')
             args.append(include_path)
+        for include_system_path in include_system_paths:
+            args.append('--include-path-system')
+            args.append(include_system_path)
 
         return args
