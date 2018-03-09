@@ -59,20 +59,3 @@ CPPCleanBearInvalidIncludeSinglePathTest = verify_local_bear(
     settings={'include_paths':
               escape(get_testdirectory_name('headers1'), '\\')},
     tempfile_kwargs={'suffix': '.cpp'})
-
-CPPCleanBearValidIncludeMultiplePathTest1 = verify_local_bear(
-    CPPCleanBear,
-    valid_files=(test_include_paths_file,),
-    invalid_files=(),
-    settings={'include_system_paths':
-              escape(get_testdirectory_name('headers1'), '\\') + ',' +
-              escape(get_testdirectory_name('headers2'), '\\')},
-    tempfile_kwargs={'suffix': '.cpp'})
-
-CPPCleanBearInvalidIncludeSinglePathTest2 = verify_local_bear(
-    CPPCleanBear,
-    valid_files=(),
-    invalid_files=(test_include_paths_file,),
-    settings={'include_system_paths':
-              escape(get_testdirectory_name('headers1'), '\\')},
-    tempfile_kwargs={'suffix': '.cpp'})
